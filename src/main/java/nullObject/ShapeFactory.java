@@ -1,4 +1,4 @@
-package designpattern.nullObject;
+package nullObject;
 
 public class ShapeFactory {
 	
