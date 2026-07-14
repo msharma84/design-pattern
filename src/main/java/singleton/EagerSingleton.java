@@ -1,4 +1,4 @@
-package designpattern.singleton;
+package singleton;
 
 public class EagerSingleton {
 	

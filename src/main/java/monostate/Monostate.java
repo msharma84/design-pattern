@@ -1,4 +1,4 @@
-package designpattern.monostate;
+package monostate;
 
 /**
  * This class is instantiable multiple times and each instance will share the

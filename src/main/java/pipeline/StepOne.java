@@ -1,4 +1,4 @@
-package designpattern.pipeline;
+package pipeline;
 
 public class StepOne implements Step<Integer, Integer> {
 

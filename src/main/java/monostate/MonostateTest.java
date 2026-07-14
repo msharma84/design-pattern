@@ -1,4 +1,4 @@
-package designpattern.monostate;
+package monostate;
 
 public class MonostateTest {
 

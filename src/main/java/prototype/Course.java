@@ -1,4 +1,4 @@
-package designpattern.prototype;
+package prototype;
 
 public class Course {
 	

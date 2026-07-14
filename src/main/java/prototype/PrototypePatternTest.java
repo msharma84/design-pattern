@@ -1,4 +1,4 @@
-package designpattern.prototype;
+package prototype;
 
 import java.util.List;
 

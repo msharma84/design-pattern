@@ -1,4 +1,4 @@
-package designpattern.immutable;
+package immutable;
 
 public class ImmutableDemo {
 
