@@ -1,16 +1,15 @@
 package builder;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
- *  Builder Design Patter - CREATIONAL DESIGN PATTERN
- *  Builder design pattern comes under creational design pattern family, it's a standardized way to create
- *  immutable objects using minimal use of constructor parameters and the initialization of state members
- *  depends on the use cases.
- *
- * */
-public final class User
-{
+ * Builder Design Patter - CREATIONAL DESIGN PATTERN
+ * Builder design pattern comes under creational design pattern family, it's a standardized way to create
+ * immutable objects using minimal use of constructor parameters and the initialization of state members
+ * depends on the use cases.
+ */
+public final class User {
     //All final attributes
     private final String userName; // required
     private final String password; // required
@@ -26,8 +25,8 @@ public final class User
     private final String designation;// optional
 
     private User(UserBuilder builder) {
-    	this.userName = builder.userName;
-        this.password  = builder.password;
+        this.userName = builder.userName;
+        this.password = builder.password;
         this.active = builder.active;
         this.userId = builder.userId;
         this.firstName = builder.firstName;
@@ -107,10 +106,28 @@ public final class User
                 '}';
     }
 
-    
+    // Equals using instanceOf
+   /* @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return active == user.active && userId == user.userId && Objects.equals(userName, user.userName) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(loginTimeStamp, user.loginTimeStamp) && Objects.equals(authenticationSource, user.authenticationSource) && Objects.equals(personCode, user.personCode) && Objects.equals(companyName, user.companyName) && Objects.equals(companyCode, user.companyCode) && Objects.equals(designation, user.designation);
+    }*/
 
-    static class UserBuilder
-    {
+    // Equals using getClass()
+    /*@Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return active == user.active && userId == user.userId && Objects.equals(userName, user.userName) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(loginTimeStamp, user.loginTimeStamp) && Objects.equals(authenticationSource, user.authenticationSource) && Objects.equals(personCode, user.personCode) && Objects.equals(companyName, user.companyName) && Objects.equals(companyCode, user.companyCode) && Objects.equals(designation, user.designation);
+    }*/
+
+   /* @Override
+    public int hashCode() {
+        return Objects.hash(userName, password, active, userId, firstName, lastName, loginTimeStamp, authenticationSource, personCode, companyName, companyCode, designation);
+    }*/
+
+    static class UserBuilder {
         private final String userName; // required
         private final String password; // required
         private final boolean active; // required
@@ -123,67 +140,77 @@ public final class User
         private String companyName; // optional
         private Integer companyCode; // optional
         private String designation;//
- 
+
         public UserBuilder(String userName, String password, boolean active) {
-        	this.userName = userName;
+            this.userName = userName;
             this.password = password;
             this.active = active;
             this.loginTimeStamp = LocalDateTime.now();
         }
+
         public UserBuilder userId(long userId) {
             this.userId = userId;
             return this;
         }
+
         public UserBuilder firstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
+
         public UserBuilder lastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
+
         public UserBuilder authenticationSource(String authenticationSource) {
             this.authenticationSource = authenticationSource;
             return this;
         }
+
         public UserBuilder personCode(String personCode) {
             this.personCode = personCode;
             return this;
         }
+
         public UserBuilder companyName(String companyName) {
             this.companyName = companyName;
             return this;
         }
+
         public UserBuilder companyCode(Integer companyCode) {
             this.companyCode = companyCode;
             return this;
         }
+
         public UserBuilder designation(String designation) {
             this.designation = designation;
             return this;
         }
+
         //Return the finally consrcuted User object
         public User build() {
-            User user =  new User(this);
+            User user = new User(this);
             validateUserObject(user);
             return user;
         }
+
         private void validateUserObject(User user) {
             //Do some basic validations to check
             //if user object does not break any assumption of system
         }
     }
-    
+
     public static void main(String[] args) {
 
-        User user1 = new User.UserBuilder("msharma","12345",true)
+        User user1 = new User.UserBuilder("msharma", "12345", true)
                 .userId(98765)
                 .designation("Developer")
                 .authenticationSource("OAuth")
                 .build();
-        System.out.println(user1);
+        //System.out.println(user1);
 
-        User user2 = new User.UserBuilder("nsharma","happy",false)
+        User user2 = new User.UserBuilder("nsharma", "happy", false)
                 .userId(342425)
                 .designation("Tester")
                 .authenticationSource("SAML")
@@ -194,7 +221,7 @@ public final class User
                 .build();
         System.out.println(user2);
 
-        User user3 = new User.UserBuilder("nsharma","happy",false)
+        User user3 = new User.UserBuilder("nsharma", "happy", false)
                 .userId(342425)
                 .designation("Tester")
                 .authenticationSource("SAML")
@@ -204,6 +231,8 @@ public final class User
                 .personCode("323-342425")
                 .build();
 
+        System.out.println(user2.hashCode());
+        System.out.println(user3.hashCode());
         System.out.println(user2 == user3);
         System.out.println(user2.equals(user3));
     }
