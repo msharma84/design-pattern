@@ -1,4 +1,4 @@
-package designpattern.adapter;
+package adapter;
 
 public interface SocketAdapter {
 	

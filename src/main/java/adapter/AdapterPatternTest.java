@@ -1,4 +1,4 @@
-package designpattern.adapter;
+package adapter;
 
 public class AdapterPatternTest {
 
@@ -21,8 +21,7 @@ public class AdapterPatternTest {
 		switch(i) {
 		case 3 : return socketAdapter.get3Volt();
 		case 12: return socketAdapter.get12Volt();
-		case 120: return socketAdapter.get120Volt();
-		default : return socketAdapter.get120Volt();
+            default : return socketAdapter.get120Volt();
 		}
 	}
 
