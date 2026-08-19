@@ -2,7 +2,7 @@ package adapter;
 
 public class SocketAdapterImpl implements SocketAdapter {
 	
-	private Socket sock = new Socket();
+	private final Socket sock = new Socket();
 
 	public Volt get120Volt() {
 		return sock.getVolt();

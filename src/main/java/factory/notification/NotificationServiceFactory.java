@@ -4,7 +4,7 @@ public class NotificationServiceFactory {
 
     public void notifyUser(NotificationType type,String message){
 
-        Notification notification = null;
+        Notification notification;
 
         if("SMS".equalsIgnoreCase(type.name())){
             notification = new SMSNotification();
